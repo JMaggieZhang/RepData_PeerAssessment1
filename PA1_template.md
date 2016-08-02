@@ -6,31 +6,43 @@ July 27, 2016
 This file is for the Reproducible Research Course Project 1.
 
 Loading and processing the data
+
 Load the data(i.e. read.csv())
+```{r,echo = TRUE}
+setwd("/Users/Maggie/Desktop/Reproducible Research")
 library(knitr)
 opts_chunk$set(echo = TRUE)
-setwd("/Users/Maggie/Desktop/Reproducible Research")
 activity <- read.csv("activity.csv", header = TRUE, sep = ",")
+```
+
 Process/transform the data(if necessary) into a format suitable for your analysis
+```{r}
 library(lubridate)
 activity$date <- ymd(activity$date)
+```
+
 What is mean total number of steps taken per day?
 
 Make a histogram of the total number of steps taken each day
+```{r}
 stepsperday <- aggregate(steps ~ date, activity, sum)
 hist(stepsperday$steps, main = "Total number of steps taken each day",col = "lightblue", border = "pink", xlab = "Steps" )
-
+```
 
 Calculate and report the mean and median total number of steps taken per day.
+```{r}
 mean <- mean(stepsperday$steps)
 mean
 ## [1] 10766.19
 median <- median(stepsperday$steps)
 median
 ## [1] 10765
+```
+
 What is the average daily activity pattern?
 
 Make a time series plot(i.e. type = “1”) of the 5-minute interval(x-axis) and the average number of steps taken, averaged across all days(y-axis)
+```{r}
 library(dplyr)
 ## 
 ## Attaching package: 'dplyr'
@@ -50,15 +62,17 @@ interval <- activity %>%
 
 library(ggplot2)
 ggplot(interval, aes(x=interval, y=steps)) +geom_line(color = "blue")
-
+```
 
 Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+```{r}
 interval[which.max(interval$steps), ]
 ## Source: local data frame [1 x 2]
 ## 
 ##   interval    steps
 ##      (int)    (dbl)
 ## 1      835 206.1698
+```
 So the No.835 5-minute interval, on average contains the maximum number of steps.
 
 Imputing missing values
