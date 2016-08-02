@@ -75,7 +75,7 @@ interval <- activity %>%
 library(ggplot2)
 ggplot(interval, aes(x=interval, y=steps)) +geom_line(color = "blue")
 ```
-![](PA1_template02.png)<!-- -->
+![](PA1_template02.png)
 
 Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 ```{r}
@@ -147,7 +147,7 @@ ggplot(total2, aes(x = total_steps)) +
         geom_histogram(fill = "pink", binwidth = 1000) +
         labs(title = "Daily Steps including Missing values", x = "Interval", y = "Number of Steps")
 ```
-![](PA1_template03.png)<!-- -->
+![](PA1_template03.png)
 
 ###Are there differences in activity patterns between weekdays and weekends?
 
@@ -176,6 +176,6 @@ s <- ggplot(newint, aes(x=interval, y=steps, color = weektype)) +
   facet_wrap(~weektype, ncol = 1, nrow=2)
 print(s)
 ```
-![](PA1_template04.png)<!-- -->
+![](PA1_template04.png)
 
 The answer is yes there are some different activity patterns between weekday and weekend.
