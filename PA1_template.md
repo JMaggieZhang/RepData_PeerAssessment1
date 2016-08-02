@@ -1,4 +1,4 @@
-Reproducible Research Course Project 1
+Reproducible Research Course Project 1  
 Jie Zhang
 
 July 27, 2016
@@ -25,11 +25,20 @@ What is mean total number of steps taken per day?
 
 Make a histogram of the total number of steps taken each day
 ```{r}
+meanperday <- aggregate(steps ~ date, activity, mean)
+head(meanperday)
+##   date    steps
+##1 2012-10-02  0.43750
+##2 2012-10-03 39.41667
+##3 2012-10-04 42.06944
+##4 2012-10-05 46.15972
+##5 2012-10-06 53.54167
+##6 2012-10-07 38.24653
 stepsperday <- aggregate(steps ~ date, activity, sum)
 hist(stepsperday$steps, main = "Total number of steps taken each day",
                  col = "lightblue", border = "pink", xlab = "Steps" )
 ```
-![](PA1_template01.png)<!-- -->
+![](PA1_template01.png)
 
 Calculate and report the mean and median total number of steps taken per day.
 ```{r}
