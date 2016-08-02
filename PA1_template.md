@@ -28,6 +28,7 @@ Make a histogram of the total number of steps taken each day
 stepsperday <- aggregate(steps ~ date, activity, sum)
 hist(stepsperday$steps, main = "Total number of steps taken each day",col = "lightblue", border = "pink", xlab = "Steps" )
 ```
+file:///Users/Maggie/Desktop/Reproducible%20Research/Rplot.png
 
 Calculate and report the mean and median total number of steps taken per day.
 ```{r}
