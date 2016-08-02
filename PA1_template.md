@@ -1,12 +1,11 @@
-Reproducible Research Course Project 1  
-Jie Zhang
+##Reproducible Research Course Project 1  
 
-July 27, 2016
+###Jie Zhang
+###July 27, 2016
 
 This file is for the Reproducible Research Course Project 1.
 
-Loading and processing the data
-
+###Loading and processing the data
 Load the data(i.e. read.csv())
 ```{r,echo = TRUE}
 setwd("/Users/Maggie/Desktop/Reproducible Research")
@@ -22,8 +21,6 @@ activity$date <- ymd(activity$date)
 ```
 
 What is mean total number of steps taken per day?
-
-Make a histogram of the total number of steps taken each day
 ```{r}
 meanperday <- aggregate(steps ~ date, activity, mean)
 head(meanperday)
@@ -34,6 +31,10 @@ head(meanperday)
 ##4 2012-10-05 46.15972
 ##5 2012-10-06 53.54167
 ##6 2012-10-07 38.24653
+```
+
+Make a histogram of the total number of steps taken each day
+```{r}
 stepsperday <- aggregate(steps ~ date, activity, sum)
 hist(stepsperday$steps, main = "Total number of steps taken each day",
                  col = "lightblue", border = "pink", xlab = "Steps" )
@@ -50,7 +51,7 @@ median
 ## [1] 10765
 ```
 
-What is the average daily activity pattern?
+###What is the average daily activity pattern?
 
 Make a time series plot(i.e. type = “1”) of the 5-minute interval(x-axis) and the average number of steps taken, averaged across all days(y-axis)
 ```{r}
@@ -87,7 +88,7 @@ interval[which.max(interval$steps), ]
 ```
 So the No.835 5-minute interval, on average contains the maximum number of steps.
 
-Imputing missing values
+###Imputing missing values
 Note that there are a number of days/intervals where there are missing values (coded as 𝙽𝙰). The presence of missing days may introduce bias into some calculations or summaries of the data.
 
 Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with 𝙽𝙰s)
@@ -148,10 +149,9 @@ ggplot(total2, aes(x = total_steps)) +
 ```
 ![](PA1_template03.png)<!-- -->
 
-Are there differences in activity patterns between weekdays and weekends?
+###Are there differences in activity patterns between weekdays and weekends?
 
 Use the dataset with the filled-in missing values for this part.
-
 Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
 ```{r}
 activity2 <- mutate(activity2, weektype = ifelse(weekdays(activity2$date) == "Saturday" | weekdays(activity2$date) == "Sunday", "weekend", "weekday"))
@@ -177,3 +177,5 @@ s <- ggplot(newint, aes(x=interval, y=steps, color = weektype)) +
 print(s)
 ```
 ![](PA1_template04.png)<!-- -->
+
+The answer is yes there are some different activity patterns between weekday and weekend.
